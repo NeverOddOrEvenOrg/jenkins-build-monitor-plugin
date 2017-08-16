@@ -98,6 +98,11 @@ public class BuildMonitorView extends ListView {
         return currentConfig().shouldDisplayCommitters();
     }
 
+    @SuppressWarnings("unused") // used in the configure-entries.jelly form
+    public boolean isDisplayMultiConfigJob() {
+        return currentConfig().shouldDisplayMultiConfigJobs();
+    }
+
     private static final BuildMonitorInstallation installation = new BuildMonitorInstallation();
 
     @SuppressWarnings("unused") // used in index.jelly
@@ -136,6 +141,7 @@ public class BuildMonitorView extends ListView {
 
             currentConfig().setDisplayCommitters(json.optBoolean("displayCommitters", true));
             currentConfig().setBuildFailureAnalyzerDisplayedField(req.getParameter("buildFailureAnalyzerDisplayedField"));
+            currentConfig().setDisplayMultiConfigJobs(req.getParameter("displayMultiConfigJobs"));
             
             try {
                 currentConfig().setOrder(orderIn(requestedOrdering));
@@ -173,7 +179,7 @@ public class BuildMonitorView extends ListView {
         Collections.sort(projects, currentConfig().getOrder());
 
         for (Job project : projects) {
-            jobs.add(views.viewOf(project));
+            jobs.addAll(views.viewsOf(project));
         }
 
         return jobs;

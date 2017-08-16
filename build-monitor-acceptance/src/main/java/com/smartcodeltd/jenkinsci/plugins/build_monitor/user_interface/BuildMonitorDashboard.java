@@ -14,6 +14,9 @@ public class BuildMonitorDashboard {
     public static final Target Collapse_Fill = Target.the("Success Summary Badge").locatedBy("//*[@id=\"full-summary-badge\"]/p");
     public static final Target Collapse_Partial = Target.the("Success Summary Badge").locatedBy("//*[@id=\"partial-summary-badge\"]/header/h2[2]");
 
+    public static final Target Multi_Config_1                 = Target.the("Multi Config Badge One").locatedBy("//*[@id='multiproject-1']/header/h2/a");
+    public static final Target Multi_Config_2                 = Target.the("Multi Config Badge Two").locatedBy("//*[@id='multiproject-2']/header/h2/a");
+
     public static final Target Control_Panel = Target.the("Control Panel").locatedBy("//label[@for='settings-toggle']");
     public static final Target Show_Badges = Target.the("Show Badges Toggle").locatedBy("//input[@id='settings-show-badges']");
 }

@@ -44,7 +44,10 @@ public class ProjectWidget {
     public Question<String> partialScreenSummaryBadgeDescription() {
         return new CollapsePartial();
     }
+	
+    public Question<String> multiConfigBadgeNames() {
+        return new ProjectMultiConfigWidget();
+    }
 
     private final String projectOfInterest;
-
 }
