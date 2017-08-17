@@ -3,49 +3,20 @@
     <!-- ng-style allows for all widgets to be resized based on user action-->
     <div ng-style="{ 'font-size': (fontSize * settings.fontSize) + vmax}">
 
-        <j:if test="${it.collapseToSummaryBadge}">
-
-            <li style="list-style-type: none">
-                <div style=" position: fixed; bottom: 25px; left:10px; right:10px;" class="successful basic project widget">
-                    <span ng-if="!(jobs.length === successfulJobs.length)">
-                        <div id="partial-summary-badge">
-                            <header>
-                                <h2>
-                                    <h2 title="Success Badge">{{successfulJobs.length}}/{{jobs.length}} job(s) passing </h2>
-                                </h2>
-                            </header>
-                        </div>
-                    </span>
-                </div>
-                <!-- full screen summary badge if all jobs are successful -->
-                <div class="successful basic project widget">
-                    <span ng-if="jobs.length === successfulJobs.length">
-                        <!-- Sets margins and font size so badge will take up full screen -->
-                        <div id="full-summary-badge" style="margin:35vmin 0 35vmin 0; font-size:3vmin">
-                            <header>
-                                <h2>
-                                    <h2 title="Success Badge">{{successfulJobs.length}}/{{jobs.length}} job(s) passing</h2>
-                                </h2>
-                            </header>
-                            <p align="center">all builds passed</p>
-                        </div>
-                    </span>
-                </div>
-            </li>
-
-        </j:if>
-
+    <div id="viewport" style="position:absolute; top: 75px; bottom: 85px; left 10px; right 10px; overflow-y:scroll;">
         <ul id="widgets"
             data-viewport-units=""
             data-ng-style="{ 'font-size': (fontSize * settings.fontSize) + vmax}"
-            class="columns-{{ settings.numberOfColumns }}">
-
+            class="columns-{{ settings.numberOfColumns }}"
+            >
 
             <j:if test="${it.collapseToSummaryBadge}">
                 <j:set var="currentProjectName" value="allNonSuccessfulJobs"/>
+                {{scaleFont(5)}}
             </j:if>
             <j:if test="${!it.collapseToSummaryBadge}">
                 <j:set var="currentProjectName" value="jobs"/>
+                {{scaleFont(5)}}
             </j:if>
 
 
@@ -75,7 +46,7 @@
                             <span>
                                 <ng-pluralize
                                         count="project.problems.length"
-                                        when="{'1': 'Identified problem: ', 'other': '{{ project.problems.length }} identified problems: '}"></ng-pluralize>
+                                        when="{'1': 'Identified problem: ', 'other': '{{ project.problems.length }} identified problems: '}"/>
                             </span>
                             <ul class="identified-failures">
                                 <li data-ng-repeat="name in project.problems">{{ name }}</li>
@@ -96,5 +67,36 @@
                 </div>
             </li>
         </ul>
+    </div>
+
+        <j:if test="${it.collapseToSummaryBadge}">
+            <li style="list-style-type: none; position: fixed; bottom: 25px; left:10px; right:20px;">
+                <div class="successful basic project widget">
+                    <span ng-if="!(jobs.length === successfulJobs.length)">
+                        <div id="partial-summary-badge">
+                            <header>
+                                <h2>
+                                    <h2 title="Success Badge">{{successfulJobs.length}}/{{jobs.length}} job(s) passing </h2>
+                                </h2>
+                            </header>
+                        </div>
+                    </span>
+                </div>
+                <!-- full screen summary badge if all jobs are successful -->
+                <div class="successful basic project widget">
+                    <span ng-if="jobs.length === successfulJobs.length">
+                        <!-- Sets margins and font size so badge will take up full screen -->
+                        <div id="full-summary-badge" style="margin:35vmin 0 35vmin 0; font-size:3vmin">
+                            <header>
+                                <h2>
+                                    <h2 title="Success Badge">{{successfulJobs.length}}/{{jobs.length}} job(s) passing</h2>
+                                </h2>
+                            </header>
+                            <p align="center">all builds passed</p>
+                        </div>
+                    </span>
+                </div>
+            </li>
+        </j:if>
     </div>
 </j:jelly>

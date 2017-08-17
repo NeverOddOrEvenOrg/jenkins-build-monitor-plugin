@@ -17,8 +17,9 @@ angular.
                 fetchJobViews = proxy.buildMonitor.fetchJobViews;
 
             $scope.jobs         = [];
+            $scope.allNonSuccessfulJobs = [];
             $scope.successfulJobs = [];
-            $scope.fontSize     = fontSizeFor($scope.jobs, $rootScope.settings.numberOfColumns);
+            $scope.fontSize     = fontSizeFor($scope.allNonSuccessfulJobs, $rootScope.settings.numberOfColumns);
 
     var divideJobs = function(){
         $scope.successfulJobs = [];
@@ -31,24 +32,30 @@ angular.
                 $scope.allNonSuccessfulJobs.push($scope.jobs[i]);
             }
         }
+                $scope.fontSize = fontSizeFor($scope.allNonSuccessfulJobs, $rootScope.settings.numberOfColumns);
+
     };
     var populateJobsArray = function (response) {
         $scope.jobs = response.data.data;
 
         $rootScope.$broadcast('jenkins:data-fetched', response.data.meta);
 
-        $scope.fontSize = fontSizeFor($scope.jobs, $rootScope.settings.numberOfColumns);
+//        $scope.fontSize = fontSizeFor($scope.allNonSuccessfulJobs, $rootScope.settings.numberOfColumns);
     };
 
     var updateJobs = function() {
         fetchJobViews().then(populateJobsArray, tryToRecover).then(divideJobs);
     };
 
+    $scope.scaleFont = function(factor) {
+        console.log(factor);
+    }
+
     every(5000, updateJobs);
 
             // todo: extract the below as a configuration service, don't rely on $rootScope.settings and make the dependency explicit
             $rootScope.$watch('settings.numberOfColumns', function(newColumnCount) {
-                $scope.fontSize = fontSizeFor($scope.jobs, newColumnCount);
+                $scope.fontSize = fontSizeFor($scope.allNonSuccessfulJobs, newColumnCount);
             });
 
             // todo: extract into a 'widget' directive; this shouldn't be a responsibility of a controller to calculate the size of the font...
