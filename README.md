@@ -100,7 +100,7 @@ You have several options here:
 
 1. **review the granularity of your jobs**: If you have too many low-level jobs displayed on one screen, consider consolidating them using [Promoted Builds Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Promoted+Builds+Plugin) or [MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin)
 1. **use job filters**: Build Monitor supports Jenkins [View Job Filters Plugin](https://wiki.jenkins-ci.org/display/JENKINS/View+Job+Filters), if you have it installed
-1. collapse successful builds: if you only want to see the jobs that aren't passing, consider collapsing all successful jobs into a single summary widget
+1. Summarize Successful Builds into Single Widget: if you only want to see the jobs that aren't passing, consider collapsing all successful jobs into a single summary widget
 1. get a bigger screen ...
 
 ### Red and green colours are lovely, but I'm colour blind ...

@@ -14,7 +14,7 @@ public class CollapseSuccessfulBuilds implements Task {
         return instrumented(CollapseSuccessfulBuilds.class);
     }
 
-    @Step("{0} clicks the Collapse Successful Builds checkbox")
+    @Step("{0} clicks the Summarize Successful Builds into Single Widget checkbox")
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(

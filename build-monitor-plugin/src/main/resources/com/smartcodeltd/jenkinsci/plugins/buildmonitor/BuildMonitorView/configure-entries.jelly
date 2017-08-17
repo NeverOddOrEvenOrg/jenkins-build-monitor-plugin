@@ -12,10 +12,6 @@
     </select>
   </f:entry>
 
-  <f:entry title="${%Collapse Successful Builds}" field="collapse">
-    <f:checkbox name="collapse" checked="${it.collapseToSummaryBadge}" id="collapse"/>
-  </f:entry>
-
   <f:entry title="${%Recurse in subfolders}" field="recurse">
     <f:checkbox id="recurse"/>
   </f:entry>
@@ -78,7 +74,11 @@
     <f:entry title="${%Display committers}" help="${descriptor.getHelpFile('displayCommitters')}">
       <f:checkbox id="displayCommitters" field="displayCommitters" />
     </f:entry>
-    
+
+    <f:entry title="${%Summarize Successful Builds into Single Widget}" field="collapse" help="${descriptor.getHelpFile('summaryWidget')}">
+      <f:checkbox name="collapse" checked="${it.collapseToSummaryBadge}" id="collapse"/>
+    </f:entry>
+
     <f:entry title="${%Failure Analyzer Plugin: Field to display}" help="${descriptor.getHelpFile('buildFailureAnalyzerDisplayedField')}">
           <select name="buildFailureAnalyzerDisplayedField" class="setting-input">
 			<f:option value="Name" selected="${it.currentbuildFailureAnalyzerDisplayedField()=='Name'}">${%Name}</f:option>
